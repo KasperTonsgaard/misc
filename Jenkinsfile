@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'ChromePath', defaultValue: 'default1', description: 'Path to ChromeDriver')
-        string(name: 'ChromeArgs', defaultValue: 'default2', description: 'Second argument')
+        string(name: 'ChromeArgs', defaultValue: 'default2', description: 'Args for ChromeDriver')
     }
 
     stages {
@@ -18,8 +18,8 @@ pipeline {
             steps {
                 script {
                     def config = [
-                        chrome_path: params.ARG1,
-                        chrome_args: params.ARG2
+                        chrome_path: params.ChromePath,
+                        chrome_args: params.ChromeArgs
                     ]
                     writeFile file: 'config.json', text: groovy.json.JsonOutput.toJson(config)
                 }
