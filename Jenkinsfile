@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'ChromePath', defaultValue: 'default1', description: 'Path to ChromeDriver')
-        string(name: 'ChromeArgs', defaultValue: 'default2', description: 'Args for ChromeDriver')
+        string(name: 'ChromePath', defaultValue: './node_modules/chromedriver/lib/chromedriver/chromedriver', description: 'Path to ChromeDriver')
+        string(name: 'ChromeArgs', defaultValue: '--headless;--disable-gpu;--window-size=1280,800;--no-sandbox;--disable-dev-shm-usage', description: 'Args for ChromeDriver')
     }
 
     stages {
