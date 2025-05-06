@@ -12,6 +12,8 @@ if (!fs.existsSync(configPath)) {
 }
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
+console.log(config.chrome_args.split(";"));
+
 const options = new chrome.Options();
 options.setChromeBinaryPath(config.chrome_path);
 options.addArguments(config.chrome_args.split(";"))
