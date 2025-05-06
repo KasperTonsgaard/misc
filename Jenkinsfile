@@ -2,12 +2,8 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'ARG1', defaultValue: 'default1', description: 'First argument')
-        string(name: 'ARG2', defaultValue: 'default2', description: 'Second argument')
-    }
-
-    environment {
-        NODE_ENV = 'production'
+        string(name: 'ChromePath', defaultValue: 'default1', description: 'Path to ChromeDriver')
+        string(name: 'ChromeArgs', defaultValue: 'default2', description: 'Second argument')
     }
 
     stages {
@@ -18,10 +14,21 @@ pipeline {
             }
         }
 
+        stage('Write Config') {
+            steps {
+                script {
+                    def config = [
+                        chrome_path: params.ARG1,
+                        chrome_args: params.ARG2
+                    ]
+                    writeFile file: 'config.json', text: groovy.json.JsonOutput.toJson(config)
+                }
+            }
+        }
+
         stage('Run Project') {
             steps {
-                echo "Running Node.js project with ARG1=${params.ARG1} and ARG2=${params.ARG2}"
-                sh "node index.js ${params.ARG1} ${params.ARG2}"
+                sh "npm run test"
             }
         }
     }
