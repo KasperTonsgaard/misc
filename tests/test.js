@@ -5,7 +5,7 @@ const chrome = require('selenium-webdriver/chrome');
 
 console.log(require('chromedriver').path);
 
-const configPath = './../config.json';
+const configPath = 'config.json';
 if (!fs.existsSync(configPath)) {
   console.error('Config file not found:', configPath);
   process.exit(1);
