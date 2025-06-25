@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
-    "test": "node ./tests/test.js",
+    "test": "node ./test/test.js",
     "mocha": "npx mocha --reporter allure-mocha"
   },
   "dependencies": {
