@@ -32,17 +32,11 @@ pipeline {
                 sh "npm run mocha"
             }
         }
-
-        stage('Allure') {
-            steps {
-                allure includeProperties: false, history: params.history, jdk: '', results: [[path: 'allure-results']]
-            }
-        }
     }
 
     post {
         always {
-            echo 'Pipeline finished.'
+            allure includeProperties: false, history: params.history, jdk: '', results: [[path: 'allure-results']]
         }
     }
 }
