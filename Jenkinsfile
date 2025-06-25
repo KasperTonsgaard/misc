@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                cleanWs()
+                sh 'rm -rf allure-results allure-report'
                 echo "Installing dependencies..."
                 sh 'npm install'
             }
