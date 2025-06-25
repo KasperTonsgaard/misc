@@ -23,7 +23,7 @@ pipeline {
 
     post {
         always {
-            allure includeProperties: false, history: ${params.HISTORY}, jdk: '', results: [[path: 'allure-results']]
+            allure includeProperties: false, history: params.HISTORY, jdk: '', results: [[path: 'allure-results']]
         }
     }
 }
