@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
+                cleanWs()
                 echo "Installing dependencies..."
                 sh 'npm install'
             }
