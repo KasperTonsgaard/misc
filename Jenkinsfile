@@ -28,7 +28,13 @@ pipeline {
 
         stage('Run Project') {
             steps {
-                sh "npm run test"
+                sh "npm run mocha"
+            }
+        }
+
+        stage('Allure') {
+            steps {
+                allure includeProperties: false, history: true, jdk: '', results: [[path: 'allure-results']]
             }
         }
     }
