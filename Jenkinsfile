@@ -4,6 +4,7 @@ pipeline {
     parameters {
         string(name: 'ChromePath', defaultValue: './node_modules/chromedriver/lib/chromedriver/chromedriver', description: 'Path to ChromeDriver')
         string(name: 'ChromeArgs', defaultValue: '--headless;--disable-gpu;--window-size=1280,800;--no-sandbox;--disable-dev-shm-usage', description: 'Args for ChromeDriver')
+        string(name: 'history', defaultValue: 'true', description: 'allow history')
     }
 
     stages {
@@ -28,7 +29,13 @@ pipeline {
 
         stage('Run Project') {
             steps {
-                sh "npm run test"
+                sh "npm run mocha"
+            }
+        }
+
+        stage('Allure') {
+            steps {
+                allure includeProperties: false, history: params.history, jdk: '', results: [[path: 'allure-results']]
             }
         }
     }
